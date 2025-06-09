@@ -12,9 +12,10 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     useEffect(() => {
         checkSession();
 
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-            setIsAuthenticated(!!session);
-        });
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+    setIsAuthenticated(!!session);
+});
+
 
         return () => {
             subscription.unsubscribe();

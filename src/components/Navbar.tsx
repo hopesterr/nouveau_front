@@ -47,9 +47,10 @@ const Navbar = () => {
         checkSession();
 
         // Écouter les changements d'état de la session
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-            setIsAuthenticated(!!session);
-        });
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+    setIsAuthenticated(!!session);
+});
+
 
         return () => {
             subscription.unsubscribe();
